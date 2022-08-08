@@ -1,33 +1,23 @@
 package items.containers;
 
 import items.Item;
+import items.Shape;
 
 import java.util.*;
 
-public class Bag extends Item {
-    final static String name = "Мешок";
-    final static String shape = "CIRCLE";
+public class Bag extends Container {
     final static String color = "Gray";
-    private double totalWeight = 0;
-    static int count = 1;
-
-    private final Set<Item> items = new HashSet<>();
+    static int count = 0;
 
     public Bag(double weight, int size){
-        super(name + " " + count, weight, size, shape, color);
+        super("Мешок " + ++count, weight, size, Shape.CIRCLE, color);
+        items = new HashSet<>();
     }
-    @Override
-    public double getWeight() {
-        for (Item item : items){
-            totalWeight += item.getWeight();
+    public String getItemsString() {
+        String s = "В мешке лежат: ";
+        for(Item item : items){
+            s += item.getName() + ", ";
         }
-        return totalWeight;
-    }
-
-    public void addItem(Item item){
-        items.add(item);
-    }
-    public Set<Item> getItems() {
-        return items;
+        return s.substring(0, s.length()-2);
     }
 }

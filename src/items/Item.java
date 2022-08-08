@@ -7,7 +7,9 @@ public class Item {
     private final Shape shape;
     private final String color;
 
-    public Item (String name, double weigh, int size, String shape, String color){
+    public boolean isItemSomewhere = false;
+
+    public Item (String name, double weigh, int size, Shape shape, String color){
         if(weigh <= 0){
             throw new IllegalArgumentException("Вес не может быть меньше 0");
         }
@@ -23,7 +25,7 @@ public class Item {
         this.name = name;
         this.weight = weigh;
         this.size = size;
-        this.shape = Shape.valueOf(shape);
+        this.shape = shape;
         this.color = color;
     }
 
@@ -49,13 +51,8 @@ public class Item {
 
     @Override
     public String toString() {
-        return "\nПредмет - " + this.name + "\nСвойства:\n- Вес: " + this.weight + " г.\n- Размер: " + this.size + "\n- Форма: " + this.shape + "\n- Цвет: " + this.color + "\n";
+        return "\n" + this.color + " " + this.name + " " + this.weight + " г. (размер: " + this.size + ", форма: " + this.shape.name() + ")\n";
+        //return "\nПредмет - " + this.name + "\nСвойства:\n- Вес: " + this.weight + " г.\n- Размер: " + this.size + "\n- Форма: " + this.shape + "\n- Цвет: " + this.color + "\n";
     }
 }
 
-enum Shape{
-    SQUARE,
-    RECTANGLE,
-    CIRCLE,
-    FLAT
-}
