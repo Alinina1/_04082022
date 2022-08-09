@@ -19,5 +19,8 @@ public class Bag extends Container {
             s += item.getName() + ", ";
         }
         return s.substring(0, s.length()-2);
+
     }
+
+
 }

@@ -1,6 +1,7 @@
 package tests;
 
 import customExeptions.ItemAlreadyPlacedExceptions;
+import drawing.SVGWriter;
 import items.Apple;
 import items.Brick;
 import items.Plate;
@@ -8,6 +9,11 @@ import items.containers.Bag;
 import items.containers.Box;
 import items.containers.Stack;
 import org.junit.jupiter.api.Test;
+
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -62,5 +68,22 @@ public class Test1 {
 
         stack1.addItem(bag2);
         System.out.println(stack1.getItemsString());
+    }
+    @Test
+    void createSVGFileTest() throws IOException {
+        SVGWriter svgWriter = new SVGWriter("test.svg");
+        //svgWriter.writeHeader();
+    }
+
+    @Test
+    void regexTest() throws IOException {
+        StringBuilder rectWriteString = new StringBuilder("<rect x=\"?\" y=\"?\" width=\"?\" height=\"?\" style=\"fill:?;stroke:?\"/>");
+        Pattern pattern = Pattern.compile("[?]");
+        Matcher matcher = pattern.matcher(rectWriteString);
+        while (matcher.find()) {
+            //System.out.println(matcher.start());
+            rectWriteString.deleteCharAt(matcher.start());
+            rectWriteString.insert(matcher.start(), "10");
+        }
     }
 }
