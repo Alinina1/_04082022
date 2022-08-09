@@ -1,5 +1,7 @@
 package items;
 
+import drawing.SVGWriter;
+
 public class Item {
     private final String name;
     private final double weight;

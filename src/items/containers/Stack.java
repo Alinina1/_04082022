@@ -1,5 +1,6 @@
 package items.containers;
 
+import drawing.ItemsTypes;
 import items.Item;
 import items.Shape;
 
@@ -8,6 +9,7 @@ import java.util.*;
 public class Stack extends Container{
     final static String color = "White";
     static int count = 0;
+    static final ItemsTypes itemType = ItemsTypes.CONTAINERS;
 
     static boolean isThereCircle = false;
     static Item prevItem = null;

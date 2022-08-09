@@ -1,5 +1,6 @@
 package items.containers;
 
+import drawing.ItemsTypes;
 import items.Item;
 import items.Shape;
 
@@ -8,6 +9,7 @@ import java.util.*;
 public class Bag extends Container {
     final static String color = "Gray";
     static int count = 0;
+    static final ItemsTypes itemType = ItemsTypes.CONTAINERS;
 
     public Bag(double weight, int size){
         super("Мешок " + ++count, weight, size, Shape.CIRCLE, color);

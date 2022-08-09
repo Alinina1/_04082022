@@ -1,5 +1,6 @@
 package items.containers;
 
+import drawing.ItemsTypes;
 import items.Item;
 import items.Shape;
 
@@ -8,6 +9,7 @@ import java.util.*;
 public class Box extends Container {
     final static String color = "Black";
     static int count = 0;
+    static final ItemsTypes itemType = ItemsTypes.CONTAINERS;
 
     public Box(double weight, int size){
         super("Коробка " + ++count, weight, size, Shape.RECTANGLE, color);
