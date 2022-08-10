@@ -14,6 +14,7 @@ public class Apple extends Item {
         write(svgWriter);
     }
 
+    @Override
     public int getR(){
         return this.getSize()* 10;
     }

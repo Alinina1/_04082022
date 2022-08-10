@@ -76,6 +76,11 @@ public class Test1 {
         Apple apple2 = new Apple(20, 3, "Red", svgWriter);
         Apple apple3 = new Apple(20, 3, "Yellow", svgWriter);
         Brick b1 = new Brick(50, 5, "Red", svgWriter);
+        Plate p1 = new Plate(50, 3, "White", svgWriter);
+        Box box1 = new Box(10, 10, svgWriter);
+        Bag bag1 = new Bag(10, 4, svgWriter);
+        box1.addItem(apple1);
+        box1.addItem(apple2);
         svgWriter.writeFooter();
     }
 

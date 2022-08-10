@@ -15,11 +15,12 @@ public class SVGWriter {
 
     private final static StringBuilder circleString = new StringBuilder("<circle cx=\"?\" cy=\"?\" r=\"?\" style=\"fill:?;stroke:?\"/>");
     private final static StringBuilder rectString = new StringBuilder("<rect x=\"?\" y=\"?\" width=\"?\" height=\"?\" style=\"fill:?;stroke:?\"/>");
+    private final static StringBuilder ellipseString = new StringBuilder("<ellipse cx=\"?\" cy=\"?\" rx=\"?\" ry=\"?\" style=\"fill:?;stroke:?\"/>");
 
     public int subjectsWeight = 10;
     public int subjectHeight = 800;
     public int containersWeight = 10;
-    public int containersHeight = 400;
+    public int containersHeight = 250;
 
     public SVGWriter(String fileName) throws IOException {
         this.fileName = fileName;
@@ -31,6 +32,9 @@ public class SVGWriter {
     }
     public StringBuilder getRectString(){
         return rectString;
+    }
+    public StringBuilder getEllipseString(){
+        return ellipseString;
     }
 
     private void writeHeader(){

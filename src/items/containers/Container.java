@@ -4,6 +4,7 @@ import customExeptions.ItemAlreadyPlacedExceptions;
 import items.Item;
 import items.Shape;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,7 +18,7 @@ abstract class Container extends Item{
         super(name, weigh, size, shape, color);
     }
 
-    public void addItem(Item item) throws ItemAlreadyPlacedExceptions {
+    public void addItem(Item item) throws ItemAlreadyPlacedExceptions, IOException {
         if(!item.isItemSomewhere){
             items.add(item);
             item.isItemSomewhere = true;

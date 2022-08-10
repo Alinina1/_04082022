@@ -13,10 +13,12 @@ public class Brick extends Item{
         super(" Кирпич " + ++count, weight, size, Shape.RECTANGLE, color);
         write(writer);
     }
+    @Override
     public int getH(){
         return this.getSize() * 10;
     }
 
+    @Override
     public int getW(){
         return this.getSize() * 20;
     }
