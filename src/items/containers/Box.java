@@ -10,28 +10,23 @@ import java.io.IOException;
 import java.util.*;
 
 public class Box extends Container {
-    final static String color = "Black";
+    //final static String color = "Black";
     static int count = 0;
-    static final ItemsTypes itemType = ItemsTypes.CONTAINERS;
-    private final SVGWriter writer;
-    private int boxW = -1;
-    private int boxH = -1;
 
-    public Box(double weight, int size, SVGWriter writer) throws IOException {
+    public Box(double weight, int size, String color) {
         super("Коробка " + ++count, weight, size, Shape.RECTANGLE, color);
         items = new HashSet<>();
-        write(writer);
-        this.writer = writer;
     }
 
-    public void addItem(Item item) throws IOException {
+    public void addItem(Item item){
         if(!item.isItemSomewhere){
             items.add(item);
             item.isItemSomewhere = true;
-            if(item.getShape().equals(Shape.CIRCLE)){
-                writer.writeShape(writer.getCircleString(), String.valueOf(boxW+item.getR()*2), String.valueOf(boxH+this.getH()-item.getR()*2), String.valueOf(item.getR()), item.getColor(), "BLACK");
-                boxW += item.getW()+10;
-            }
+//            if(item.getShape().equals(Shape.CIRCLE)){
+//                writer.writeShape(writer.getCircleString(), String.valueOf(boxW+item.getR()*2), String.valueOf(boxH+this.getH()-item.getR()*2), String.valueOf(item.getR()), item.getColor(), "BLACK");
+//                System.out.println("boxH = " + boxH + ", boxW = " + boxW + "; circle: cx = " + (boxW+item.getR()*2) + ", cy = " + (boxH+this.getH()-item.getR()*2) + ", r = " + item.getR());
+//                boxW += item.getW()+10;
+//            }
         }
         else {
             throw new IllegalArgumentException("Этот предмет уже лежит в другом месте!");
@@ -56,11 +51,23 @@ public class Box extends Container {
         return this.getSize() * 50;
     }
 
-    public void write(SVGWriter writer) throws IOException {
-        boxW = writer.containersWeight;
-        boxH = writer.containersHeight;
-        writer.writeShape(writer.getRectString(),String.valueOf(boxW), String.valueOf(boxH), String.valueOf(getW()),String.valueOf(getH()), getColor(), "BLACK");
-        writer.containersWeight +=getW() + 10;
+    public void write(int x, int y, SVGWriter writer) throws IOException {
+        //y += this.getH();
+        int xx = x;
+        writer.writeShape(writer.getRectString(),String.valueOf(x), String.valueOf(y), String.valueOf(getW()),String.valueOf(getH()), getColor(), "BLACK");
 
+        xx += 2;
+        int yy = -1;
+        for (Item itemsForWrite: items){
+            if(xx + itemsForWrite.getW() >= this.getW()){
+                xx = x;
+                y -= yy;
+            }
+            itemsForWrite.write(xx, y+this.getH()-itemsForWrite.getH(), writer);
+            xx += itemsForWrite.getW();
+            if(itemsForWrite.getH() > yy){
+                yy = itemsForWrite.getH();
+            }
+        }
     }
 }

@@ -65,21 +65,6 @@ public class SVGWriter {
         fileWriter.write(localSB.toString());
     }
 
-//    public void writeCircle(String ... arrayLists) throws IOException {
-//        StringBuilder circleWriteString = new StringBuilder("");
-//        Pattern pattern = Pattern.compile("[?]");
-//        Matcher matcher = pattern.matcher(circleWriteString);
-//        System.out.println(circleWriteString.toString());
-//        int i = 0;
-//        while (matcher.find(0)) {
-//            circleWriteString.insert(matcher.start()+1, arrayLists[i++]);
-//            circleWriteString.deleteCharAt(matcher.start());
-//            System.out.println(circleWriteString);
-//        }
-//        fileWriter.write(circleWriteString.toString());
-//    }
-    //writeRoundRect(x,y,w,h,r1,r2,color1,color2),
-
     public void writeFooter(){
         try {
             //fileWriter.write("<text x=\"80\" y=\"200\">ellipse</text>\n");
@@ -91,4 +76,5 @@ public class SVGWriter {
             throw new RuntimeException(e);
         }
     }
+
 }

@@ -10,7 +10,11 @@ import items.containers.Box;
 import items.containers.Stack;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.io.*;
+import java.util.*;
+import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -70,20 +74,48 @@ public class Test1 {
 //        System.out.println(stack1.getItemsString());
 //    }
     @Test
-    void createSVGFileTest() throws IOException {
+    void createSVGFileTest() throws IOException, ItemAlreadyPlacedExceptions {
         SVGWriter svgWriter = new SVGWriter("test.svg");
-        Apple apple1 = new Apple(10, 2, "Green", svgWriter);
-        Apple apple2 = new Apple(20, 3, "Red", svgWriter);
-        Apple apple3 = new Apple(20, 3, "Yellow", svgWriter);
-        Brick b1 = new Brick(50, 5, "Red", svgWriter);
-        Plate p1 = new Plate(50, 3, "White", svgWriter);
-        Box box1 = new Box(10, 10, svgWriter);
-        Bag bag1 = new Bag(10, 4, svgWriter);
+        int x = 10, y = 300;
+        Apple apple1 = new Apple(10, 2, "Green");
+        Apple apple2 = new Apple(20, 3, "Red");
+        Apple apple3 = new Apple(20, 3, "Yellow");
+        Brick b1 = new Brick(50, 5, "Red");
+        Brick b2 = new Brick(50, 3, "Yellow");
+        Plate p1 = new Plate(50, 3, "White");
+        Brick b3 = new Brick(50, 5, "tomato");
+        Brick b4 = new Brick(50, 5, "purple");
+        Apple apple4 = new Apple(20, 4, "plum");
+        Apple apple5 = new Apple(10, 2, "white");
+        Apple apple6 = new Apple(10, 2, "fuchsia");
+
+        Box box1 = new Box(10, 10, "yellow");
+        Box box2 = new Box(10, 4,"salmon");
+        box2.addItem(apple5);
+        box1.addItem(b1);
+        box1.addItem(b2);
         box1.addItem(apple1);
-        box1.addItem(apple2);
+        //box1.addItem(apple2);
+        box1.addItem(apple3);
+        box1.addItem(p1);
+        box1.addItem(b3);
+        box1.addItem(b4);
+        box1.addItem(apple4);
+        box1.addItem(box2);
+        box1.addItem(apple6);
+        box1.write(x, y, svgWriter);
+
+
+
+        Bag bag1 = new Bag(10, 4);
+        //bag1.write(1, 1, svgWriter);
+//        box1.addItem(apple1);
+//        box1.addItem(apple2);
+
         svgWriter.writeFooter();
     }
 
+    void a(List<Object> l){}
     @Test
     void regexTest() throws IOException {
         StringBuilder rectWriteString = new StringBuilder("<rect x=\"?\" y=\"?\" width=\"?\" height=\"?\" style=\"fill:?;stroke:?\"/>");

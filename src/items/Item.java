@@ -2,6 +2,8 @@ package items;
 
 import drawing.SVGWriter;
 
+import java.io.IOException;
+
 public class Item {
     private final String name;
     private final double weight;
@@ -75,6 +77,9 @@ public class Item {
     public String toString() {
         return "\n" + this.color + " " + this.name + " " + this.weight + " г. (размер: " + this.size + ", форма: " + this.shape.name() + ")\n";
         //return "\nПредмет - " + this.name + "\nСвойства:\n- Вес: " + this.weight + " г.\n- Размер: " + this.size + "\n- Форма: " + this.shape + "\n- Цвет: " + this.color + "\n";
+    }
+    public void write(int x, int y, SVGWriter writer) throws IOException {
+
     }
 }
 
