@@ -12,6 +12,10 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.io.*;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.DosFileAttributes;
+import java.nio.file.attribute.PosixFileAttributes;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.ConcurrentSkipListSet;
@@ -22,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class Test1 {
-//    Apple apple1 = new Apple(10, 2, "Green");
+        //    Apple apple1 = new Apple(10, 2, "Green");
 //    Apple apple2 = new Apple(20, 3, "Red");
 //    Apple apple3 = new Apple(20, 3, "Yellow");
 //    Brick brick1 = new Brick(50, 3, "Red");
@@ -89,13 +93,44 @@ public class Test1 {
         Apple apple5 = new Apple(10, 2, "white");
         Apple apple6 = new Apple(10, 2, "fuchsia");
 
-        Box box1 = new Box(10, 10, "yellow");
+
+        Bag bag1 = new Bag(10, 4);
+        Apple apple7 = new Apple(10, 5, "white");
+        Apple apple8 = new Apple(10, 3, "fuchsia");
+        Brick b5 = new Brick(50, 5, "Red");
+        Brick b6 = new Brick(50, 2, "fuchsia");
+        Brick b7 = new Brick(50, 4, "salmon");
+        bag1.addItem(apple7);
+        bag1.addItem(apple8);
+        bag1.addItem(b5);
+        bag1.addItem(b6);
+        bag1.addItem(b7);
+        bag1.write(x, y, svgWriter);
+
         Box box2 = new Box(10, 4,"salmon");
         box2.addItem(apple5);
+        Box box3 = new Box(10, 5,"salmon");
+        box3.addItem(apple2);
+
+        Stack stack1 = new Stack(10, 10);
+        Brick b8 = new Brick(50, 5, "Red");
+        Brick b9 = new Brick(50, 4, "fuchsia");
+        Brick b10 = new Brick(50, 4, "salmon");
+        Apple apple9 = new Apple(10, 3, "fuchsia");
+        Plate plate1 = new Plate(10, 3, "salmon");
+        stack1.addItem(box3);
+        stack1.addItem(b8);
+        stack1.addItem(b9);
+        stack1.addItem(b10);
+        stack1.addItem(plate1);
+        stack1.addItem(apple9);
+        //stack1.write(x,y+300,svgWriter);
+
+
+        Box box1 = new Box(10, 10, "thistle");
         box1.addItem(b1);
         box1.addItem(b2);
         box1.addItem(apple1);
-        //box1.addItem(apple2);
         box1.addItem(apple3);
         box1.addItem(p1);
         box1.addItem(b3);
@@ -103,19 +138,12 @@ public class Test1 {
         box1.addItem(apple4);
         box1.addItem(box2);
         box1.addItem(apple6);
-        box1.write(x, y, svgWriter);
-
-
-
-        Bag bag1 = new Bag(10, 4);
-        //bag1.write(1, 1, svgWriter);
-//        box1.addItem(apple1);
-//        box1.addItem(apple2);
+        //.write(x, y, svgWriter);
 
         svgWriter.writeFooter();
     }
 
-    void a(List<Object> l){}
+
     @Test
     void regexTest() throws IOException {
         StringBuilder rectWriteString = new StringBuilder("<rect x=\"?\" y=\"?\" width=\"?\" height=\"?\" style=\"fill:?;stroke:?\"/>");
@@ -126,5 +154,18 @@ public class Test1 {
             rectWriteString.deleteCharAt(matcher.start());
             rectWriteString.insert(matcher.start(), "10");
         }
+    }
+
+    @Test
+    void threadTest()  {
+        for(int i = 0; i < 1000000; i++){
+            new Thread().start();
+        }
+    }
+
+    @Test
+    void testtt() throws IOException{
+        WatchService watchService = Paths.get("").getFileSystem().newWatchService();
+        Paths.get("").register(watchService, ENTRY_MOFIFY);
     }
 }

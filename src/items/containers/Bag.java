@@ -25,21 +25,31 @@ public class Bag extends Container {
 
     }
     @Override
-    public int getRX(){
+    public int getW(){
         return this.getSize()* 40;
     }
 
     @Override
-    public int getRY(){
+    public int getH(){
         return this.getSize()* 50;
     }
 
     @Override
     public void write(int x, int y, SVGWriter writer) throws IOException {
-        writer.writeShape(writer.getEllipseString(),String.valueOf(writer.containersWeight+getRX()), String.valueOf(writer.containersWeight-getRY()),String.valueOf(getRX()), String.valueOf(getRY()), getColor(), "BLACK");
-        writer.subjectsWeight +=getRX()*2 + 10;
+        int xx = x;
+        writer.writeShape(writer.getEllipseString(),String.valueOf(x+this.getW()), String.valueOf(y),String.valueOf(getW()), String.valueOf(getH()), getColor(), "BLACK");
+        int yy = -1;
         for (Item itemsForWrite: items){
-            itemsForWrite.write(x, y, writer);
+            int xxx = (int) Math.round(this.getW()*Math.sqrt(1-(double) y*y/(double)(this.getH()*this.getH())));
+            if(xxx + itemsForWrite.getW() >= this.getW()){
+                xx = x;
+                y -= yy;
+            }
+            itemsForWrite.write(xxx, y+this.getH()-itemsForWrite.getH(), writer);
+            xx -=itemsForWrite.getW();
+            if(itemsForWrite.getH() > yy){
+                yy = itemsForWrite.getH();
+            }
         }
     }
 }

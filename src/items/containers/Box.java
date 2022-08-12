@@ -51,6 +51,25 @@ public class Box extends Container {
         return this.getSize() * 50;
     }
 
+//    @Override
+//    public void write(int x, int y, SVGWriter writer) throws IOException {
+//        int xx = x;
+//        writer.writeShape(writer.getRectString(),String.valueOf(x), String.valueOf(y), String.valueOf(getW()),String.valueOf(getH()), getColor(), "BLACK");
+//        xx += 2;
+//        y -= 10;
+//        int yy = -1;
+//        for (Item itemsForWrite: items){
+//            if(xx + itemsForWrite.getW() >= this.getW()){
+//                xx = x;
+//                y -= yy;
+//            }
+//            itemsForWrite.write(xx, y+this.getH()-itemsForWrite.getH(), writer);
+//            xx += itemsForWrite.getW();
+//            if(itemsForWrite.getH() > yy){
+//                yy = itemsForWrite.getH();
+//            }
+//        }
+//    }
     public void write(int x, int y, SVGWriter writer) throws IOException {
         //y += this.getH();
         int xx = x;

@@ -1,9 +1,11 @@
 package items.containers;
 
 import drawing.ItemsTypes;
+import drawing.SVGWriter;
 import items.Item;
 import items.Shape;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Stack extends Container{
@@ -28,7 +30,7 @@ public class Stack extends Container{
                     isThereCircle = true;
                     return;
                 }
-                if(prevItem == null || prevItem.getSize() > item.getSize()){
+                if(prevItem == null || prevItem.getSize() >= item.getSize()){
                     items.add(item);
                     item.isItemSomewhere = true;
                     prevItem = item;
@@ -46,11 +48,19 @@ public class Stack extends Container{
     public void putAwayItem(){
         ((ArrayDeque<?>)items).removeLast();
     }
+
     public String getItemsString() {
         String s = "В стопке: ";
         for(Item item : items){
             s += item.getName() + ", ";
         }
         return s.substring(0, s.length()-2);
+    }
+
+    public void write(int x, int y, SVGWriter writer) throws IOException {
+        for (Item itemsForWrite: items){
+            itemsForWrite.write(x, y-itemsForWrite.getH(), writer);
+            y-=itemsForWrite.getH();
+        }
     }
 }

@@ -61,18 +61,6 @@ public class Item {
         return this.getSize() * 20;
     }
 
-    public int getR(){
-        return this.getSize()* 10;
-    }
-
-    public int getRX(){
-        return this.getSize()* 40;
-    }
-
-    public int getRY(){
-        return this.getSize()* 50;
-    }
-
     @Override
     public String toString() {
         return "\n" + this.color + " " + this.name + " " + this.weight + " г. (размер: " + this.size + ", форма: " + this.shape.name() + ")\n";
